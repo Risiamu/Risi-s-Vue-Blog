@@ -1,16 +1,9 @@
-# Another Blog Post
+# 测试标题2
 
-This is our second example post showing how multiple files work.
+测试内容2
 
-## Features
+```javascript
+console.log('？')
+```
 
-- Multiple posts
-- Automatic loading
-- Clean formatting
-
-\`\`\`python
-def hello():
-    print("Hello from Python!")
-\`\`\`
-
-> Learning is fun!
+> 测试内容2
