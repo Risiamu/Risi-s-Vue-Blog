@@ -1,38 +1,9 @@
 <script setup lang="ts">
-import IllustrationDisplay from '@/components/IllustrationDisplay.vue'
+import VueLogo from '@/components/illustrations/VueLogo.vue'
 
 const illustrations = [
   {
-    imageSrc: '/src/assets/logo.svg',
-    description: `
-# Vue Logo Illustration
-
-This is the official Vue.js logo.
-
-## Features
-- Clean design
-- Represents reactivity
-- Recognizable brand
-
-> "The Progressive JavaScript Framework"
-    `
-  },
-  {
-    imageSrc: 'https://placehold.co/600x400',
-    description: `
-# Placeholder Image
-
-This is a sample illustration using a placeholder image.
-
-## Usage
-- Testing layouts
-- Temporary content
-- Design mockups
-
-\`\`\`html
-<img src="placeholder.jpg" alt="Example">
-\`\`\`
-    `
+    component: VueLogo
   }
 ]
 </script>
@@ -42,11 +13,10 @@ This is a sample illustration using a placeholder image.
     <h1>Illustration</h1>
     
     <div class="illustrations-list">
-      <IllustrationDisplay
+      <component
         v-for="(illustration, index) in illustrations"
         :key="index"
-        :imageSrc="illustration.imageSrc"
-        :description="illustration.description"
+        :is="illustration.component"
       />
     </div>
   </main>
