@@ -11,12 +11,13 @@ const illustrations = ref<Illustration[]>([])
 
 onMounted(async () => {
   // Get all image files from illustrations folder in content root
-  const imageFiles = import.meta.glob('/illustrations/**/image.*', { eager: true })
+  const imageFiles = import.meta.glob('/src/illustrations/**/image.*', { eager: true })
   
   // Process each image file
-  illustrations.value = Object.entries(imageFiles).map(([imagePath]) => {
+  illustrations.value = Object.entries(imageFiles).map(([imagePath, module]) => {
     const folderPath = imagePath.split('/').slice(0, -1).join('/')
     const descriptionPath = `${folderPath}/description.md`
+    const imageSrc = module.default
     
     // Try to load corresponding markdown file
     try {
@@ -26,7 +27,7 @@ onMounted(async () => {
       })[descriptionPath]
       
       return {
-        imageSrc: imagePath,
+        imageSrc: imageSrc,
         description
       }
     } catch {

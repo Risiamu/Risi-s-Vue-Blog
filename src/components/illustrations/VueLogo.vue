@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import IllustrationDisplay from '@/components/IllustrationDisplay.vue'
 
-const imageSrc = '/illustrations/vue-logo/image.svg'
+const imageSrc = '/src/illustrations/vue-logo/image.svg'
 const description = `
 # Vue Logo
 
