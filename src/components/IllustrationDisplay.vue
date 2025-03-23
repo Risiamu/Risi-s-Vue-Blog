@@ -15,8 +15,8 @@ const props = defineProps({
 
 const htmlDescription = ref('')
 
-watch(() => props.description, (newDescription) => {
-  htmlDescription.value = marked.parse(newDescription)
+watch(() => props.description, async (newDescription) => {
+  htmlDescription.value = await marked.parse(newDescription)
 }, { immediate: true })
 </script>
 

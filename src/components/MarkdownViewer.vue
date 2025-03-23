@@ -11,8 +11,8 @@ const props = defineProps({
 
 const htmlContent = ref('')
 
-watch(() => props.content, (newContent) => {
-  htmlContent.value = marked.parse(newContent)
+watch(() => props.content, async (newContent) => {
+  htmlContent.value = await marked.parse(newContent)
 }, { immediate: true })
 </script>
 

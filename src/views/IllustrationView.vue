@@ -18,7 +18,7 @@ onMounted(async () => {
     const folderPath = imagePath.split('/').slice(0, -1).join('/')
     const nameBaseName = imagePath.split('/').slice(-1)[0].split('.')[0]
     const descriptionPath = `${folderPath}/${nameBaseName}.md`
-    const imageSrc = module.default
+    const imageSrc = (module as { default: string }).default
 
     // Try to load corresponding markdown file
     try {
@@ -33,7 +33,8 @@ onMounted(async () => {
       }
     } catch {
       return {
-        imageSrc: imagePath
+        imageSrc: imageSrc,
+        description: ''
       }
     }
   })
