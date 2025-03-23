@@ -2,14 +2,14 @@
 </script>
 
 <template>
-  <main class="home">
-    <h1>Welcome</h1>
-    <p>This is the home page of my Vue application.</p>
+  <main class="illustration">
+    <h1>Illustration</h1>
+    <p>This is the illustration page.</p>
   </main>
 </template>
 
 <style scoped>
-.home {
+.illustration {
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
