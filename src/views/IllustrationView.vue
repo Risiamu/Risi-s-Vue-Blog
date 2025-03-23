@@ -4,7 +4,7 @@ import IllustrationDisplay from '@/components/IllustrationDisplay.vue'
 
 interface Illustration {
   imageSrc: string
-  description?: string
+  description: string
 }
 
 const illustrations = ref<Illustration[]>([])
