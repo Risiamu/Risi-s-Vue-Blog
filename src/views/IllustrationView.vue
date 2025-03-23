@@ -1,11 +1,41 @@
 <script setup lang="ts">
-import VueLogo from '@/components/illustrations/VueLogo.vue'
+import { ref, onMounted } from 'vue'
+import IllustrationDisplay from '@/components/IllustrationDisplay.vue'
 
-const illustrations = [
-  {
-    component: VueLogo
-  }
-]
+interface Illustration {
+  imageSrc: string
+  description?: string
+}
+
+const illustrations = ref<Illustration[]>([])
+
+onMounted(async () => {
+  // Get all image files from illustrations folder in content root
+  const imageFiles = import.meta.glob('/illustrations/**/image.*', { eager: true })
+  
+  // Process each image file
+  illustrations.value = Object.entries(imageFiles).map(([imagePath]) => {
+    const folderPath = imagePath.split('/').slice(0, -1).join('/')
+    const descriptionPath = `${folderPath}/description.md`
+    
+    // Try to load corresponding markdown file
+    try {
+      const description = import.meta.glob('/illustrations/**/description.md', { 
+        as: 'raw',
+        eager: true 
+      })[descriptionPath]
+      
+      return {
+        imageSrc: imagePath,
+        description
+      }
+    } catch {
+      return {
+        imageSrc: imagePath
+      }
+    }
+  })
+})
 </script>
 
 <template>
@@ -13,10 +43,11 @@ const illustrations = [
     <h1>Illustration</h1>
     
     <div class="illustrations-list">
-      <component
+      <IllustrationDisplay
         v-for="(illustration, index) in illustrations"
         :key="index"
-        :is="illustration.component"
+        :imageSrc="illustration.imageSrc"
+        :description="illustration.description"
       />
     </div>
   </main>
