@@ -11,21 +11,22 @@ const illustrations = ref<Illustration[]>([])
 
 onMounted(async () => {
   // Get all image files from illustrations folder in content root
-  const imageFiles = import.meta.glob('/src/illustrations/**/image.*', { eager: true })
-  
+  const imageFiles = import.meta.glob('/illustrations/*.jpg', { eager: true })
+
   // Process each image file
   illustrations.value = Object.entries(imageFiles).map(([imagePath, module]) => {
     const folderPath = imagePath.split('/').slice(0, -1).join('/')
-    const descriptionPath = `${folderPath}/description.md`
+    const nameBaseName = imagePath.split('/').slice(-1)[0].split('.')[0]
+    const descriptionPath = `${folderPath}/${nameBaseName}.md`
     const imageSrc = module.default
-    
+
     // Try to load corresponding markdown file
     try {
-      const description = import.meta.glob('/illustrations/**/description.md', { 
+      const description = import.meta.glob('/illustrations/*.md', {
         as: 'raw',
-        eager: true 
+        eager: true
       })[descriptionPath]
-      
+
       return {
         imageSrc: imageSrc,
         description
@@ -42,7 +43,7 @@ onMounted(async () => {
 <template>
   <main class="illustration">
     <h1>Illustration</h1>
-    
+
     <div class="illustrations-list">
       <IllustrationDisplay
         v-for="(illustration, index) in illustrations"
