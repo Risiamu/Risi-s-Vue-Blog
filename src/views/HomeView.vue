@@ -57,6 +57,8 @@ import { RouterLink } from 'vue-router'
   align-items: center;
   transition: all 0.3s ease;
   box-sizing: border-box;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
 }
 
 .odd {
@@ -85,8 +87,8 @@ import { RouterLink } from 'vue-router'
 }
 
 .column:hover {
-  border-left: 2px solid gold;
-  border-right: 2px solid gold;
+  border-left-color: gold;
+  border-right-color: gold;
 }
 
 .column:hover .header-link {
