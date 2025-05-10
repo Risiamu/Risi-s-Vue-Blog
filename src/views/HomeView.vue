@@ -5,24 +5,29 @@ import { RouterLink } from 'vue-router'
 <template>
   <main class="home">
     <div class="column-container">
-      <div class="column odd">
-        <RouterLink to="/" class="header-link">Home</RouterLink>
+      <div class="padding-column left"></div>
+      <div class="content-columns">
+        <div class="column odd">
+          <RouterLink to="/" class="header-link">Home</RouterLink>
+        </div>
+        <div class="column even">
+          <RouterLink to="/about" class="header-link">About</RouterLink>
+        </div>
+        <div class="column odd">
+          <RouterLink to="/illustration" class="header-link">Illustration</RouterLink>
+        </div>
+        <div class="column even">
+          <RouterLink to="/blogs" class="header-link">Blogs</RouterLink>
+        </div>
       </div>
-      <div class="column even">
-        <RouterLink to="/about" class="header-link">About</RouterLink>
-      </div>
-      <div class="column odd">
-        <RouterLink to="/illustration" class="header-link">Illustration</RouterLink>
-      </div>
-      <div class="column even">
-        <RouterLink to="/blogs" class="header-link">Blogs</RouterLink>
-      </div>
+      <div class="padding-column right"></div>
     </div>
   </main>
 </template>
 
 <style scoped>
 .home {
+  --content-width: 60%; /* Easily editable percentage for content width */
   width: 100%;
   height: 100vh;
   margin: 0;
@@ -33,6 +38,16 @@ import { RouterLink } from 'vue-router'
   display: flex;
   width: 100%;
   height: 100%;
+}
+
+.padding-column {
+  flex-grow: 1;
+  background-color: white;
+}
+
+.content-columns {
+  width: var(--content-width);
+  display: flex;
 }
 
 .column {
