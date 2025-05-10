@@ -1,22 +1,78 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
 </script>
 
 <template>
   <main class="home">
-    <h1>Welcome</h1>
-    <p>This is the home page of my Vue application.</p>
+    <div class="column-container">
+      <div class="column odd">
+        <RouterLink to="/" class="header-link">Home</RouterLink>
+      </div>
+      <div class="column even">
+        <RouterLink to="/about" class="header-link">About</RouterLink>
+      </div>
+      <div class="column odd">
+        <RouterLink to="/illustration" class="header-link">Illustration</RouterLink>
+      </div>
+      <div class="column even">
+        <RouterLink to="/blogs" class="header-link">Blogs</RouterLink>
+      </div>
+    </div>
   </main>
 </template>
 
 <style scoped>
 .home {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
-h1 {
-  margin-bottom: 1rem;
+.column-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.column {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.odd {
+  background-color: black;
+  color: white;
+}
+
+.even {
+  background-color: white;
+  color: black;
+}
+
+.header-link {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.odd .header-link {
+  color: white;
+}
+
+.even .header-link {
+  color: black;
+}
+
+.column:hover {
+  border: 2px solid gold;
+}
+
+.column:hover .header-link {
+  color: gold;
 }
 </style>
